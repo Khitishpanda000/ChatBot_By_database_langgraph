@@ -2,7 +2,7 @@ import streamlit as st
 from langgraph_database_backend import chatbot, retriver_all_threads
 from langchain_core.messages import HumanMessage, AIMessage
 import uuid
-
+import os
 
 # ******************** Utility Functions ********************
 
@@ -137,7 +137,9 @@ if user_input:
         st.markdown(user_input)
 
     CONFIG = {
-        'configurable': {
+        "configurable": {"thread_id": st.session_state["thread_id"]},
+        "run_name": f"Thread_{thread_id}",
+        'metadata': {
             'thread_id': st.session_state['thread_id']
         }
     }
